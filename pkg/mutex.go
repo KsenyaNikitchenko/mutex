@@ -5,6 +5,13 @@ type Mutex struct {
 	done  chan bool
 }
 
+func NewMutex(count int) *Mutex {
+	return &Mutex{
+		Count: count,
+		done:  make(chan bool, count),
+	}
+}
+
 func (m *Mutex) Unlock() {
 	m.done <- true
 }
